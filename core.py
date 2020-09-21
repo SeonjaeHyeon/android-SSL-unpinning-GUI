@@ -124,21 +124,6 @@ class Core(QObject):
             # Unpacking
             self.finished.emit("Decompiling APK..")
 
-            #sp.run(["java", "-jar", apktool, "d", target_apk])
-            '''
-            process = sp.Popen(["java", "-jar", apktool, "d", target_apk], stdout=sp.PIPE, stderr=sp.PIPE)
-            while process.poll() is None:
-                output = process.stdout.readline().decode("utf-8").strip()
-
-                self.finished.emit(output)
-            
-            if process.poll():
-                stdout, stderr = process.communicate()
-                self.finished_err.emit([1, stderr.decode("utf-8").strip()])
-                return
-
-            process, stdout, stderr = None, None, None
-            '''
             if self._execute_command(["java", "-jar", apktool, "d", target_apk]):
                 return
 
@@ -153,48 +138,11 @@ class Core(QObject):
             # Repacking
             self.finished.emit("Re-compiling APK..")
 
-            #sp.run(
-            #    ["java", "-jar", apktool, "b", target_apk_unpacked, "-o", target_apk_repacked]
-            #)
-            '''
-            process = sp.Popen(
-                ["java", "-jar", apktool, "b", target_apk_unpacked, "-o", target_apk_repacked], 
-                stdout=sp.PIPE, stderr=sp.PIPE
-            )
-            while process.poll() is None:
-                output = process.stdout.readline().decode("utf-8").strip()
-
-                self.finished.emit(output)
-            
-            if process.poll():
-                stdout, stderr = process.communicate()
-                self.finished_err.emit([1, stderr.decode("utf-8").strip()])
-                return
-
-            process, stdout, stderr = None, None, None
-            '''
-
             if self._execute_command(["java", "-jar", apktool, "b", target_apk_unpacked, "-o", target_apk_repacked]):
                 return
 
             # Signing
             self.finished.emit("Signing APK..")
-
-            #sp.run(["java", "-jar", sign, target_apk_repacked])
-            '''
-            process = sp.Popen(["java", "-jar", sign, target_apk_repacked], stdout=sp.PIPE, stderr=sp.PIPE)
-            while process.poll() is None:
-                output = process.stdout.readline().decode("utf-8").strip()
-
-                self.finished.emit(output)
-            
-            if process.poll():
-                stdout, stderr = process.communicate()
-                self.finished_err.emit([1, stderr.decode("utf-8").strip()])
-                return
-
-            process, stdout, stderr = None, None, None
-            '''
 
             if self._execute_command(["java", "-jar", sign, target_apk_repacked]):
                 return
