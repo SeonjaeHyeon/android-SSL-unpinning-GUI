@@ -24,12 +24,12 @@ class Core(QObject):
         chk = True
         if os.name == "posix":  # Linux
             try:
-                sp.check_call(["which", proc], stdout=sp.DEVNULL, stderr=sp.DEVNULL)
+                sp.check_call(["which", proc], stdout=sp.DEVNULL, stderr=sp.DEVNULL, stdin=sp.DEVNULL)
             except sp.CalledProcessError:
                 chk = False
         else:  # Windows
             try:
-                sp.check_call(["where", proc], stdout=sp.DEVNULL, stderr=sp.DEVNULL)
+                sp.check_call(["where", proc], stdout=sp.DEVNULL, stderr=sp.DEVNULL, stdin=sp.DEVNULL)
             except sp.CalledProcessError:
                 chk = False
 
@@ -37,7 +37,7 @@ class Core(QObject):
 
     @pyqtSlot()
     def _execute_command(self, cmd):
-        self.process = sp.Popen(cmd, stdout=sp.PIPE, stderr=sp.PIPE)
+        self.process = sp.Popen(cmd, stdout=sp.PIPE, stderr=sp.PIPE, stdin=sp.DEVNULL)
 
         while self.process.poll() is None:
             output = self.process.stdout.readline().decode("utf-8").strip()
