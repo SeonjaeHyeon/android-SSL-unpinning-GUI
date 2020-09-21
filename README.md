@@ -14,9 +14,16 @@ A GUI version of [android-SSL-unpinning](https://github.com/ryanking13/android-S
 
 ## About
 
-I added simple front-end GUI on ryanking13's android-SSL-unpinning script. So, most of the codes in `code.py` belong to ryanking13.  
+I added simple front-end GUI on ryanking13's android-SSL-unpinning script. So, most of the codes in `core.py` belong to ryanking13.  
 
 I just did some code refactoring to work on PyQt5.
+
+## How to Run
+
+Just run `main.py` with Python3.
+```
+python main.py
+```
 
 ## References
 [Apktool](https://github.com/iBotPeaches/Apktool)  
