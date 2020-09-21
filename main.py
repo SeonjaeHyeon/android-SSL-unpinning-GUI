@@ -103,11 +103,11 @@ class MainWindow(QMainWindow, form_class, QObject):
         self.msgbox.setWindowTitle("Error")
 
         if event[0]:
-            self.msgbox.setText("예기치 못한 오류가 발생했습니다.")
-            self.msgbox.setInformativeText("자세한 정보는 아래 Show Details.. 버튼을 눌러 확인해주십시요.")
+            self.msgbox.setText("An unexpected error has occurred.")
+            self.msgbox.setInformativeText("To see more information, please press below Show Details.. button.")
             self.msgbox.setDetailedText(event[1])
         else:
-            self.msgbox.setText("오류가 발생했습니다.")
+            self.msgbox.setText("An error has occurred.")
             self.msgbox.setInformativeText(event[1])
 
         self.msgbox.setStandardButtons(QMessageBox.Ok)
