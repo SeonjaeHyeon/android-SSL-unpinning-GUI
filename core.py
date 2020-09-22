@@ -41,6 +41,8 @@ class Core(QObject):
 
         while self.process.poll() is None:
             output = self.process.stdout.readline().decode("utf-8").strip()
+            if not output:  # The line is null
+                continue
 
             self.finished.emit(output)
         
