@@ -1,4 +1,3 @@
-import os
 import sys
 from pathlib import Path
 
@@ -53,7 +52,7 @@ class MainWindow(QMainWindow, form_class, QObject):
 
     def _btnOpenPath(self):
         fname = QFileDialog.getOpenFileName(self)
-        
+
         self.pathEdit.setText(str(Path(fname[0])))
 
     # Drag & Drop event handler: https://gist.github.com/peace098beat/db8ef7161508e6500ebe
@@ -65,7 +64,7 @@ class MainWindow(QMainWindow, form_class, QObject):
 
     def dropEvent(self, event):
         files = [u.toLocalFile() for u in event.mimeData().urls()]
-        
+
         self.pathEdit.setText(str(Path(files[0])))  # Currently load only one file.
 
     def _transmitData(self):
@@ -79,7 +78,7 @@ class MainWindow(QMainWindow, form_class, QObject):
             return
 
         self.main_signal.emit(self.pathEdit.text())
-    
+
     @pyqtSlot(str)
     def _updateLog(self, signal):
         currentLog = self.logEdit.toPlainText()

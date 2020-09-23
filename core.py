@@ -1,5 +1,4 @@
 import os
-import sys
 import shutil
 from pathlib import Path
 import xml.etree.ElementTree as ET
@@ -45,7 +44,7 @@ class Core(QObject):
                 continue
 
             self.finished.emit(output)
-        
+
         if self.process.poll():
             stdout, stderr = self.process.communicate()
             self.finished_err.emit([1, stderr.decode("utf-8").strip()])
@@ -119,7 +118,7 @@ class Core(QObject):
                     [0, "The extension of `{}` is not .apk, is it really a APK file?".format(target_apk)]
                     )
                 return
-            
+
             target_apk_unpacked = target_apk.rstrip(".apk")
             target_apk_repacked = target_apk_unpacked + ".repack.apk"
 
@@ -151,7 +150,7 @@ class Core(QObject):
 
             # Clean up
             self.finished.emit("Deleting temp files..")
-            
+
             shutil.rmtree(target_apk_unpacked)
             os.remove(target_apk_repacked)
 
