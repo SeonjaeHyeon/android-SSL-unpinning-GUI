@@ -108,7 +108,7 @@ class Core(QObject):
             self._check("java") or self._die("Java is not installed")
 
             apktool = "apktool_2.4.1.jar"
-            sign = "sign-1.0.jar"
+            sign = "uber-apk-signer-1.2.1.jar"
             target_apk = apk_path
 
             self.finished.emit("Checking file extension..")
@@ -145,7 +145,7 @@ class Core(QObject):
             # Signing
             self.finished.emit("Signing APK..")
 
-            if self._execute_command(["java", "-jar", sign, target_apk_repacked]):
+            if self._execute_command(["java", "-jar", sign, "-a", target_apk_repacked]):
                 return
 
             # Clean up
