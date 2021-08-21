@@ -71,8 +71,8 @@ class Core(QObject):
                     "@xml/network_security_config",
                 )
 
-            with open(manifest_file, "w") as f:
-                f.write(ET.tostring(root, encoding="unicode"))
+            with open(manifest_file, "w", encoding="utf-8") as f:
+                f.write(ET.tostring(root, encoding="utf-8").decode())
         except Exception as E:
             self.finished_err.emit([1, str(E)])
             return
