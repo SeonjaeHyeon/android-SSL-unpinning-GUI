@@ -27,7 +27,7 @@ python main.py
 
 ## References
 [Apktool](https://github.com/iBotPeaches/Apktool)  
-[sign](https://github.com/appium-boneyard/sign)
+[uber-apk-signer](https://github.com/patrickfav/uber-apk-signer)
 
 ## Thanks to
 [ryanking13](https://github.com/ryanking13)
